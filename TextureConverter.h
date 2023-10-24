@@ -17,11 +17,7 @@ public:
 	/// <param name="filePath">ファイルパス</param>
 	void SeparateFilePath(const std::wstring& filePath);
 
-	/// <summary>
-	/// DDSテクスチャとしてファイル書き出し
-	/// </summary>
-	void SaveDDSTextureToFile();
-
+	
 	/// <summary>
 	/// テクスチャファイル読み込み
 	/// </summary>
@@ -29,6 +25,13 @@ public:
 	void LoadWICTextureFromFile(const std::string& filePath);
 
 	static std::wstring ConvertMultiByteStringToWideString(const std::string& String);
+
+private:
+	/// <summary>
+	/// DDSテクスチャとしてファイル書き出し
+	/// </summary>
+	void SaveDDSTextureToFile();
+
 
 private:
 	//画像の情報
