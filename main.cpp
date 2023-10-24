@@ -1,15 +1,38 @@
 #include <cstdio>
 #include <cstdlib>
+#include <cassert>
+#include <comdef.h>
+#include <d3d12.h>
+#include "TextureConverter.h"
 
-int main(int argc,char* argv[]) {
+enum Argument {
+	kApplicationPath,	//アプリケーションのパス
+	kFilePath,			//渡されたファイルのパス
 
-	//argcの数だけ繰り返す
-	for (int i = 0; i < argc; i++){
-		//文字列argvのi番を表示
-		printf(argv[i]);
-		//改行
-		printf("\n");
-	}
+	NumArgument
+};
+
+int main(int argc, char* argv[]) {
+
+	//for (int i = 0; i < argc; i++) {
+	//	printf(argv[i]);
+	//	//改行
+	//	printf("\n");
+	//}
+
+	assert(argc >= NumArgument);
+
+	//ライブラリの初期化
+	HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+	assert(SUCCEEDED(hr));
+
+	//テクスチャコンバータ
+	TextureConverter converter;
+
+	converter.ConverterTextureWICToDDS(argv[kFilePath]);
+
+	//COMライブラリの終了
+	CoUninitialize();
 
 	system("pause");
 	return 0;
