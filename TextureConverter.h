@@ -9,7 +9,7 @@ public:
 	/// テクスチャをWICからDDSに変換する
 	/// </summary>
 	/// <param name = "fliePath">ファイルパス</param>
-	void ConverterTextureWICToDDS(const std::string& filePath);
+	void ConverterTextureWICToDDS(const std::string& filePath, int32_t numOptions = 0, char* options[] = nullptr);
 
 	/// <summary>
 	/// パスとファイル名を分離する
@@ -26,12 +26,15 @@ public:
 
 	static std::wstring ConvertMultiByteStringToWideString(const std::string& String);
 
-private:
 	/// <summary>
 	/// DDSテクスチャとしてファイル書き出し
 	/// </summary>
-	void SaveDDSTextureToFile();
+	void SaveDDSTextureToFile(int32_t numOptions, char* options[]);
 
+	/// <summary>
+	/// 使用方法を出力(表示)する
+	/// </summary>
+	static void OutputUsage();
 
 private:
 	//画像の情報
